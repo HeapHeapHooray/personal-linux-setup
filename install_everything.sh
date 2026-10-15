@@ -47,6 +47,7 @@ run_installer "install_google_chrome.sh"
 run_installer "install_quickemu.sh"
 run_installer "install_portablemc.sh"
 run_installer "install_minecraft_mod_manager.sh"
+run_installer "install_mimo.sh"
 
 # Step 3: Install favorite terminal utilities via APT
 echo ""
