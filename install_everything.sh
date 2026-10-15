@@ -58,8 +58,8 @@ sudo apt install -y neofetch ncdu htop btop trash-cli
 echo ""
 echo "==> [4/6] Configuring trash-cli alias..."
 if ! grep -q 'alias rm=' ~/.bashrc 2>/dev/null; then
-    echo "alias rm=trash-cli" >> ~/.bashrc
-    echo "--> Added 'alias rm=trash-cli' to ~/.bashrc"
+    echo "alias rm=trash-put" >> ~/.bashrc
+    echo "--> Added 'alias rm=trash-put' to ~/.bashrc"
 else
     echo "--> Alias for 'rm' already present in ~/.bashrc"
 fi
