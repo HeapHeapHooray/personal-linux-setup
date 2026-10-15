@@ -36,27 +36,28 @@ echo "=================================================="
 
 # Step 1: Update package list and install core prerequisites
 echo ""
-echo "==> [1/6] Updating APT repositories and installing prerequisites..."
+echo "==> [1/8] Updating APT repositories and installing prerequisites..."
 sudo apt update
-sudo apt install -y curl wget tar unzip
+sudo apt install -y curl wget tar unzip git
 
 # Step 2: Run modular application installers
 echo ""
-echo "==> [2/6] Running standalone application installers..."
+echo "==> [2/8] Running standalone application installers..."
 run_installer "install_google_chrome.sh"
 run_installer "install_quickemu.sh"
 run_installer "install_portablemc.sh"
 run_installer "install_minecraft_mod_manager.sh"
 run_installer "install_mimo.sh"
+run_installer "install_eternal_summer.sh"
 
 # Step 3: Install favorite terminal utilities via APT
 echo ""
-echo "==> [3/6] Installing favorite CLI packages..."
+echo "==> [3/8] Installing favorite CLI packages..."
 sudo apt install -y neofetch ncdu htop btop trash-cli
 
 # Step 4: Configure safe file deletion alias
 echo ""
-echo "==> [4/6] Configuring trash-cli alias..."
+echo "==> [4/8] Configuring trash-cli alias..."
 if ! grep -q 'alias rm=' ~/.bashrc 2>/dev/null; then
     echo "alias rm=trash-put" >> ~/.bashrc
     echo "--> Added 'alias rm=trash-put' to ~/.bashrc"
@@ -73,7 +74,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Step 6: Install uv and Python tools
 echo ""
-echo "==> [5/6] Setting up uv (Python package installer)..."
+echo "==> [5/8] Setting up uv (Python package installer)..."
 if ! command -v uv >/dev/null 2>&1; then
     echo "--> Installing uv via official Astral installer..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -83,9 +84,18 @@ else
 fi
 
 echo ""
-echo "==> [6/6] Installing Python CLI tools via uv..."
+echo "==> [6/8] Installing Python CLI tools via uv..."
 uv tool install konsave
 uv tool install mozapp
+
+echo ""
+echo "==> [7/8] Setting up Minecraft..."
+run_installer "setup_minecraft.sh"
+
+echo ""
+echo "==> [8/8] Setting up customization..."
+run_installer "install_shadowcandii.sh"
+run_installer "install_wallpapers.sh"
 
 echo ""
 echo "=================================================="
