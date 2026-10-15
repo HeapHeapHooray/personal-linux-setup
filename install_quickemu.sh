@@ -9,5 +9,5 @@ set -euo pipefail
 
 sudo apt-add-repository ppa:flexiondotorg/quickemu
 sudo apt update
-sudo apt install quickemu
+sudo apt install -y quickemu
 mkdir -p ~/.local/bin
