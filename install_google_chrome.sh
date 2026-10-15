@@ -1,3 +1,11 @@
+#!/usr/bin/env bash
+#
+# install_google_chrome.sh
+# Download and install Google Chrome Stable on Ubuntu/Debian systems.
+#
+
+set -euo pipefail
+
 # Install curl and wget before installation of Google Chrome
 sudo apt install -y curl wget
 # Add Google's repository to source.
