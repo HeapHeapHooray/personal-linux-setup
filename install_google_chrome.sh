@@ -15,3 +15,19 @@ sudo sh -c 'echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stabl
 sudo apt update
 # Install Google Chrome
 sudo apt install -y google-chrome-stable
+
+# Set Google Chrome as default browser
+if command -v xdg-settings >/dev/null 2>&1; then
+    xdg-settings set default-web-browser google-chrome.desktop || true
+fi
+
+if command -v xdg-mime >/dev/null 2>&1; then
+    xdg-mime default google-chrome.desktop x-scheme-handler/http || true
+    xdg-mime default google-chrome.desktop x-scheme-handler/https || true
+    xdg-mime default google-chrome.desktop text/html || true
+fi
+
+if command -v update-alternatives >/dev/null 2>&1; then
+    sudo update-alternatives --set x-www-browser /usr/bin/google-chrome-stable 2>/dev/null || true
+    sudo update-alternatives --set gnome-www-browser /usr/bin/google-chrome-stable 2>/dev/null || true
+fi
